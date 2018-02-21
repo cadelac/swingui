@@ -100,6 +100,11 @@ public class TableGenericModel<K,E>
 		_rowManager.selectAllRows();
 	}
 	
+	public void updateRowWithKey(K key_) {
+		int row = _rowManager.getRowFromKey(key_);
+		this.fireTableRowsUpdated(row, row);
+	}
+	
     protected final ColumnManager<E> _columnManager;
     protected final RowManager<K,E> _rowManager;
     protected final Function<E,K> _adapter;
