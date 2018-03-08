@@ -58,8 +58,8 @@ public abstract class TableGenericColumn<C,V> {
 			, final C value_) {
 	}
 
-	public C getDelta(final V model_) {
-		return null;
+	public Integer getDelta(final V model_) {
+		return 0;
 	}
 
 	private final String  _title;

@@ -41,10 +41,10 @@ public class DblCellRenderer<V>
 	private final ColorAttribute UPTICK = new ColorAttribute(GREEN, WHITE);
 	private final ColorAttribute DOWNTICK = new ColorAttribute(RED, WHITE);
 
-	public DblCellRenderer() {
+	public DblCellRenderer(final DecimalFormat decimalFormat_) {
 		setHorizontalAlignment(SwingConstants.RIGHT);
 		setOpaque(true);
-		decimalFormat = new DecimalFormat("#.##");
+		decimalFormat = decimalFormat_;
 	}
 
 
@@ -89,9 +89,7 @@ public class DblCellRenderer<V>
 					@SuppressWarnings("unchecked")
 					V rowData = (V) tableGenericModel.getElementAtRow(row);
 					if (rowData != null) {
-						Double delta = 
-								doubleValue - 
-								tableGenericColumn.getValue(rowData);
+						final Integer delta = tableGenericColumn.getDelta(rowData);
 						if (delta != null) {
 							setting = (delta>0.0) 
 									? UPTICK
