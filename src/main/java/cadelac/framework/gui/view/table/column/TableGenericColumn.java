@@ -2,8 +2,6 @@ package cadelac.framework.gui.view.table.column;
 
 import java.util.Comparator;
 
-import javax.swing.table.AbstractTableModel;
-
 public abstract class TableGenericColumn<C,V> {
 
 	public TableGenericColumn(
@@ -53,12 +51,11 @@ public abstract class TableGenericColumn<C,V> {
 	}
 	
 	public void setValue(
-			final AbstractTableModel state_
-			, final V model_
-			, final C value_) {
+			final V model_
+			, final Object value_) {
 	}
 
-	public Integer getDelta(final V model_) {
+	public int getDelta(final V model_) {
 		return 0;
 	}
 

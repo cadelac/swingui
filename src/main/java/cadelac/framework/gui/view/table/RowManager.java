@@ -20,6 +20,9 @@ public class RowManager<K,E> {
 		public K getKeyAtRow(int row_) {
 			return _keyMap.get(row_);
 		}
+		public boolean isKeyExist(final K key_) {
+			return _rowMap.containsKey(key_);
+		}
 		public int getRowFromKey(final K key_) {
 			return _rowMap.get(key_);
 		}
@@ -67,6 +70,9 @@ public class RowManager<K,E> {
 		if (key == null)
 			return null;
 		return _provider.getElement(key);
+	}
+	public boolean isKeyExist(final K key_) {
+		return _rowMgr.isKeyExist(key_);
 	}
 	public int getRowFromKey(final K key_) {
 		return _rowMgr.getRowFromKey(key_);

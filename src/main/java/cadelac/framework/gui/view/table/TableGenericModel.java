@@ -69,8 +69,26 @@ public class TableGenericModel<K,E>
 	}
 
 	@Override
+	public void setValueAt(Object aValue, int rowIndex_, int columnIndex_) {
+		final TableGenericColumn<?,E> column = _columnManager.getColumn(columnIndex_);
+		final E element = _rowManager.getElementAtRow(rowIndex_);
+		if (column != null && element != null) {
+			column.setValue(element, aValue);
+			this.fireTableCellUpdated(rowIndex_, columnIndex_);
+		}
+    }
+	
+	@Override
     public boolean isCellEditable(int row, int col) {
 		return false;
+	}
+	
+	public void setValue(Object aValue, K key_, int columnTag_) {
+		if (_rowManager.isKeyExist(key_)) {
+			int rowIndex = _rowManager.getRowFromKey(key_);
+			int columnIndex = _columnManager.getColumnByTag(columnTag_).getColumnIndex();
+			setValueAt(aValue, rowIndex, columnIndex);
+		}
 	}
 	
     public void setTableHeader(JTableHeader tableHeader_) {
