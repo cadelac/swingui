@@ -75,7 +75,11 @@ public class DblCellRenderer<V>
 			setting = SELECTED;
 		}
 		else {
-			final TableModel tableModel = table.getModel();
+			TableModel tableModel = table.getModel();
+			if (tableModel instanceof TableSorter) {
+				TableSorter tableSorter = (TableSorter) tableModel;
+				tableModel = tableSorter.getTableModel();
+			}
 			if (tableModel instanceof TableGenericModel) {
 				TableGenericModel<?,?> tableGenericModel = 
 						(TableGenericModel<?,?>) tableModel;

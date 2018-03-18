@@ -123,6 +123,14 @@ public class TableGenericModel<K,E>
 		this.fireTableRowsUpdated(row, row);
 	}
 	
+	public void updateCellWithKey(K key_, int columnTag_) {
+		if (_rowManager.isKeyExist(key_)) {
+			this.fireTableCellUpdated(
+					_rowManager.getRowFromKey(key_)
+					, _columnManager.getColumnByTag(columnTag_).getColumnIndex());
+		}
+	}
+	
     protected final ColumnManager<E> _columnManager;
     protected final RowManager<K,E> _rowManager;
     protected final Function<E,K> _adapter;
